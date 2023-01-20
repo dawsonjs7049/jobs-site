@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\User;
 use App\Models\Listing;
 use Illuminate\Database\Seeder;
 
@@ -15,10 +16,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::factory(10)->create();
+        // \App\Models\User::factory(10)->create();
+
+        // create one user with this name and email, don't need password since we won't login as them
+        $user = User::factory()->create([
+            'name' => 'John Doe',
+            'email' => 'john@gmail.com'
+        ]);
 
         // have the seeder create 6 entries into the db using the Listing factory defined in factories directory
-        Listing::factory(6)->create();
+        // creating listings that are all tied to john doe that we created above
+        Listing::factory(6)->create([
+            'user_id' => $user->id
+        ]);
 
         // manually put some data into the db
         // Listing::create([

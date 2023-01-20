@@ -9,6 +9,9 @@ class Listing extends Model
 {
     use HasFactory;
 
+    // this allows the ListingController to insert a new row in db (mass-insert) - have to specify what we are allowed to insert
+    protected $fillable = ['title', 'company', 'location', 'website', 'email', 'description', 'tags', 'logo', 'user_id'];
+
     public function scopeFilter($query, array $filters)
     {
         // if there is a tag, do this, else ignore this block
@@ -27,5 +30,12 @@ class Listing extends Model
                     ->orWhere('description', 'like', '%' . $filters['search'] . '%')
                     ->orWhere('tags', 'like', '%' . $filters['search'] . '%');
         }
+    }
+
+    // relationship to user
+    public function user()
+    {
+        // A listing model belongs to a user
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

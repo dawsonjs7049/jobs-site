@@ -89,3 +89,22 @@ Routing
     Clockwork Extension
         -> chrome extension that shows a bunch of the fetch requests info 
         -> need to composer install it -> composer require itsgoingd/clockwork
+
+    Setting File Upload Location
+        -> can change settings in config/filesystems
+
+    Creating symlink between two folders
+        -> run -> php artisan storage:link -> this links public/storage with storage/app/public 
+
+    Logging
+        -> use Log::info() -> outputs to storage/logs/laravel.log
+
+    Middleware 
+        -> can use middleware on the routes, like with auth(). So if a user is not authenticated (not logged-in), then they get redirect to a 
+           specific page defined in Authenticate.php
+        -> can use guest middleware so if you are already logged in and try to do something like register, it will redirect you 
+           to what it thinks is a home page. Can change what the home page is in Providers/RouteServiceProvider
+
+    Tinker tool 
+        -> command line tool run by -> php artisan tinker. Then you can say something like \App\Models\Listing::first() to have it run 
+           that code and return in the command line what it would in the app 

@@ -22,5 +22,11 @@
         @endunless
 
     </div>
+
+    <div class="mt-6 p-4">
+        {{-- shows pagination links (if we enabled them on controller by using ->paginate()) --}}
+        {{ $listings->links() }}
+    </div>
+
 </x-layout>
 
